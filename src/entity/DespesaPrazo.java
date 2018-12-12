@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class DespesaCartao extends Despesa{
+import com.sun.xml.internal.bind.v2.TODO;
+
+public class DespesaPrazo extends Despesa{
 	private Integer numeroDeParcelas;
 	private double valorDasParcelas;
 	private int parcelasPagas;
 	
 	
-	public DespesaCartao(Despesa d, Integer numeroDeParcelas) {
-		super(d.getId(), d.getDescricao(), d.getValorTotal(), d.getData(), d.isParcelado(), d.getCategoria());
+	public DespesaPrazo(Despesa despesa, Integer numeroDeParcelas) {
+		super(despesa.getId(), despesa.getDescricao(), despesa.getValorTotal(), despesa.getData(), despesa.isParcelado(), despesa.getCategoria());
 		this.numeroDeParcelas = numeroDeParcelas;
 		this.parcelasPagas = 0;
 		this.valorDasParcelas = 0.0;
@@ -25,7 +27,7 @@ public class DespesaCartao extends Despesa{
 		}
 	}
 
-	public DespesaCartao(Integer id,
+	public DespesaPrazo(Integer id,
 				String descricao,
 				double valorTotal,
 				Date data,
@@ -35,6 +37,9 @@ public class DespesaCartao extends Despesa{
 				double valorDasParcelas,
 				int parcelasPagas) {
 		super(id, descricao, valorTotal, data, parcelado, categoria);
+		this.numeroDeParcelas = numeroDeParcelas;
+		this.valorDasParcelas = valorDasParcelas;
+		this.parcelasPagas = parcelasPagas;
 	}
 	
 
@@ -70,14 +75,14 @@ public class DespesaCartao extends Despesa{
 		int mes = this.getData().getMonth();
 		Despesa d1;
 		if(numeroDeParcelas + mes < 12) {
-			d1 = new DespesaCartao(super.getId(), super.getDescricao(), super.getValorTotal(),
+			d1 = new DespesaPrazo(super.getId(), super.getDescricao(), super.getValorTotal(),
 					new Date(super.getData().getYear(), mes+parcelasPagas, super.getData().getDay()),
-					super.getCategoria(),
-					super.isParcelado(), this.numeroDeParcelas, this.valorDasParcelas, this.parcelasPagas);			
+					super.getCategoria(),super.isParcelado(), this.numeroDeParcelas, this.valorDasParcelas, this.parcelasPagas);			
 			parcelasPagas++;
 			return d1;
 		}else {
-			d1 = new DespesaCartao(super.getId(), super.getDescricao(), super.getValorTotal(),
+			//TODO: fazer para > 12 
+			d1 = new DespesaPrazo(super.getId(), super.getDescricao(), super.getValorTotal(),
 					new Date(super.getData().getYear(), mes+parcelasPagas, super.getData().getDay()),
 					super.getCategoria(),
 					super.isParcelado(), this.numeroDeParcelas, this.valorDasParcelas, this.parcelasPagas);				
@@ -85,6 +90,15 @@ public class DespesaCartao extends Despesa{
 			return d1;
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "DespesaPrazo {numeroDeParcelas = " + numeroDeParcelas + ", valorDasParcelas = " + valorDasParcelas
+				+ ", parcelasPagas = " + parcelasPagas + ", " + super.toString() + "}";
+	}
+
+
+	
 
 
 	

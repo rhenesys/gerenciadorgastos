@@ -22,8 +22,10 @@ public class Despesa {
 		this.data = data;
 		this.parcelado = parcelado;
 		this.categoria = categoria;
-		despesaLista = new ListaDespesas();
-		adicionaDespesa(this);
+		if(despesaLista == null)
+			despesaLista = new ListaDespesas();
+		//despesaLista = new ListaDespesas();
+		//adicionaDespesa(this);
 	}
 	
 	
@@ -111,10 +113,19 @@ public class Despesa {
 	}
 	
 
-	public void adicionaDespesa(Despesa d) {
-		if(!isParcelado())			
+	public void adicionaDespesa(Despesa d) {		
 			despesaLista.adicionarDespesaNaLista(d);
 	}
+	@Override
+	public String toString() {
+		String s = "";
+		s += "Despesa= {\nid: "+ id + ",\ndescricao = " + descricao + ",\nvalorTotal = " + valorTotal + ",\ndata = " + data
+				+ ",\nparcelado = " + parcelado + ",\n" + categoria.toString() + "}";
+				
+		return s;
+	}
+
+
 
 	
 	

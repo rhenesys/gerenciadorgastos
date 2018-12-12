@@ -24,7 +24,12 @@ public class ListaDespesas {
 
 	@Override
 	public String toString() {
-		return "ListaDespesas [listaDespesa=" + listaDespesa + ", toString()=" + super.toString() + "]";
+		String s = "";
+		for(int i=0; i<listaDespesa.size(); i++) {
+			s += "\t-->despesa: "+(i+1)+": {\n"+listaDespesa.get(i) + "}\n";
+		}
+	return s;
+		//return "ListaDespesas [listaDespesa=" + listaDespesa + ", toString()=" + super.toString() + "]";
 	}
 	
 	
