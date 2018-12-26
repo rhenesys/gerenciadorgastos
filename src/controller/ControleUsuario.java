@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,15 +30,17 @@ public class ControleUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		if(request.getParameter("usuario")!=null)
+		{
+			//TODO
+		}
 	}
 
 		/**
 		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			if(Boolean.parseBoolean(request.getParameter("registro")))
+			if(request.getParameter("registro")!=null)
 			{
 				registrarUsuario(request,response);	
 			}
@@ -51,13 +55,11 @@ public class ControleUsuario extends HttpServlet {
 			String email = request.getParameter("email");
 			String senha = request.getParameter("senha");
 			
-			//TODO Validar com o banco de dados
+			Usuario usuarioAcessando = ControleBancoDados.acessarSistema(email,senha);
 			
-			if(email!=null && senha != null)
-			{
-				request.setAttribute("nomeusuario", email);
-				request.getRequestDispatcher("perfilusuario.jsp").forward(request, response);
-			}
+			request.setAttribute("usuario", usuarioAcessando);
+			request.getRequestDispatcher("perfilusuario.jsp").forward(request, response);
+			
 		}
 
 		private void registrarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -69,18 +71,22 @@ public class ControleUsuario extends HttpServlet {
 			String senha = request.getParameter("senha");
 			String redigitaSenha = request.getParameter("redigitasenha");
 
-			Usuario u = new Usuario(nome, sobrenome, nickname, email, senha);
-
-			if(!ObservadorUsuario.controleDeUsuariosExistentes.containsKey(u.getId()))
-			{
-				ObservadorUsuario.controleDeUsuariosExistentes.put(u.getId(),u);
-				request.setAttribute("nomeusuario", u.getPrimeiroNome());
-				request.getRequestDispatcher("login.jsp").forward(request, response);
-			}
-			else
-			{
-				//TODO erro, id do usuário já existente
-			}
+			ControleBancoDados.criarNovoUsuario(nome, sobrenome, nickname, email, senha);
+			
+			response.sendRedirect("login.jsp");
+			
+//			Usuario u = new Usuario(nome, sobrenome, nickname, email, senha);
+//
+//			if(!ObservadorUsuario.controleDeUsuariosExistentes.containsKey(u.getId()))
+//			{
+//				ObservadorUsuario.controleDeUsuariosExistentes.put(u.getId(),u);
+//				request.setAttribute("nomeusuario", u.getPrimeiroNome());
+//				request.getRequestDispatcher("login.jsp").forward(request, response);
+//			}
+//			else
+//			{
+//				//TODO erro, id do usuário já existente
+//			}
 		}
 
 }

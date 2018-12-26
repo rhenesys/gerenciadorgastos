@@ -42,6 +42,7 @@
 					sua senha</label> <input type="password" class="form-control"
 					id="redigitasenha" placeholder="Redigite a sua senha"
 					name="redigitasenha" required>
+					<input type="hidden" name="registro" />
 			</div>
 			<button type="submit" class="btn btn-primary">Cadastrar</button>
 		</form>

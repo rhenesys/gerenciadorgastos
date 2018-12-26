@@ -8,21 +8,16 @@ public class Usuario {
 	private String email;
 	private int id;
 	
-	public Usuario(String primeiroNome, String ultimoNome, String email, String nickname, String senha)
+	public Usuario(int id_usuario, String primeiroNome, String ultimoNome, String nickname, String email, String senha)
 	{
 		this.primeiroNome = primeiroNome;
 		this.ultimoNome = ultimoNome;
 		this.senha = senha;
 		this.nickname = nickname;
 		this.email = email;
-		id = criarNovaId();
+		this.id = id_usuario;
 	}
 	
-	//TODO criar um método random para gerar uma id
-	private int criarNovaId()
-	{
-		return 123456;
-	}
 
 	public int getId() {
 		return id;
