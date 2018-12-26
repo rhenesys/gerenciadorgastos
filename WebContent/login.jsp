@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Despesas</title>
+<link rel="stylesheet" type="text/css" href="CSS/estilo.css">
 </head>
 
 <meta charset="ISO-8859-1">
@@ -29,13 +30,16 @@
 				<div class="panel panel-default">
 					<div class="form-group">
 						<div class="panel-heading">
-							<label>Login</label>
+							<h1 class="check"><label>Login</label></h1>
 						</div>
-						<div class="panel-body" style="min-height: 10; max-height: 10;">
+						<div class="panel-body customentrarpainel">
 							<input type="text" class="form-control" id="email" name="email"
-								placeholder="Email"> <input type="password"
+								placeholder="Email"> 
+								<br />
+								<input type="password"
 								class="form-control" id="senha" name="senha" placeholder="Senha">
-							<button type="submit" class="btn btn-primary">Entrar</button>
+								<br />
+							<button type="submit" class="btn btn-primary customentrarbutton">Entrar</button>
 							<div>
 								<a href="cadastro.jsp">Registrar-se</a>
 							</div>
