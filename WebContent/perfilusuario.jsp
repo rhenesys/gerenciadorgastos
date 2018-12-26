@@ -22,34 +22,37 @@
 <body>
 	<div class="col-sm-1"></div>
 	<div class="col-sm-10" style="text-align: center">
-		<div class="col-sm-1" style="background-color:#33dd33;">l</div>
-		<div class="col-sm-10" style="display: inline-block; background-color:#dfdfdf;">
-			<h1>Seja bem-vindo: ${nomeusuario }</h1>
-			
-			<table border=1 style="width:60%">
-				<tr>
-					<td>Saldo atual:</td>
-					<td>R$ 0.00</td>
-				</tr>
-				<tr>
-					<td colspan="2">Próximos débitos</td>
-				</tr>
-				<tr>
-					<td>Evento</td>
-					<td>Vencimento</td>
-				</tr>
-				<tr>
-					<td>Boleto do Banco</td>
-					<td>DATA
-				</tr>
-				<tr>
-					<td>Condominio</td>
-					<td>DATA</td>
-				</tr>
+
+		<div class="col-sm-12"
+			style="text-align: center; margin: 0 auto;">
+			<h1>Bem-vindo ${nomeusuario }</h1>
+
+			<table class="table table-striped" style="width: 100%">
+				<thead>
+					<tr>
+						<th>Saldo atual:</th>
+						<th>R$ 0.00</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr>
+						<td>Evento</td>
+						<td>Vencimento</td>
+					</tr>
+					<tr>
+						<td>Boleto do Banco</td>
+						<td>DATA
+					</tr>
+					<tr>
+						<td>Condominio</td>
+						<td>DATA</td>
+					</tr>
+				</tbody>
 			</table>
-			
+
 		</div>
-		<div class="col-sm-1" style="background-color:#ef13ae;">r</div>
+
 	</div>
 	<div class="col-sm-1"></div>
 </body>
