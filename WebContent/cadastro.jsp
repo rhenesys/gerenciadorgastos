@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+f<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -24,7 +24,7 @@
 	<div class="col-sm-6">
 
 		Faca o seu cadastro
-		<form action="usuario.jsp" method="POST">
+		<form action="usuario" method="POST">
 			<div class="form-group">
 				<label>Nome</label> <input type="text" class="form-control"
 					id="nomeusuario" placeholder="Digite seu nome" name="nomeusuario"

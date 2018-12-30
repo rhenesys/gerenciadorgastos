@@ -1,20 +1,20 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import entity.Usuario;
 
 /**
  * Servlet implementation class ControleUsuario
  */
-@WebServlet(name = "usuario.jsp", urlPatterns = { "/usuario.jsp" })
+@WebServlet("/usuario")
 public class ControleUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,7 +42,7 @@ public class ControleUsuario extends HttpServlet {
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			if(request.getParameter("registro")!=null)
 			{
-				registrarUsuario(request,response);	
+				registrarUsuario(request,response);
 			}
 			
 			if(Boolean.parseBoolean(request.getParameter("acessar")))
@@ -57,9 +57,14 @@ public class ControleUsuario extends HttpServlet {
 			
 			Usuario usuarioAcessando = ControleBancoDados.acessarSistema(email,senha);
 			
-			request.setAttribute("usuario", usuarioAcessando);
-			request.getRequestDispatcher("perfilusuario.jsp").forward(request, response);
+			if(usuarioAcessando != null) {
+			HttpSession sessao = request.getSession();
+			sessao.setAttribute("usuario", usuarioAcessando);
 			
+			request.getRequestDispatcher("perfilusuario.jsp").forward(request, response);
+			}else {
+				response.sendRedirect("login.jsp");
+			}
 		}
 
 		private void registrarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

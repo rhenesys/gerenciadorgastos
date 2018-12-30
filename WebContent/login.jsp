@@ -25,7 +25,7 @@
 	<div class="col-sm-4"></div>
 	<div class="col-sm-4">
 
-		<form action="usuario.jsp?acessar=true" method="POST">
+		<form action="usuario?acessar=true" method="POST">
 			<div class="panel-group" style="padding-top: 3em; max-width: 80;">
 				<div class="panel panel-default">
 					<div class="form-group">
