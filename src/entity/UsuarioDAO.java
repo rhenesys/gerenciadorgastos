@@ -1,48 +1,17 @@
-package controller;
+package entity;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import entity.Usuario;
+import util.ConexoesFabrica;
 
-public class ControleBancoDados {
-	
-	private static Connection criarConexao() {
-		try {
+public class UsuarioDAO {
 
-			Class.forName("org.postgresql.Driver");
-
-		} catch (ClassNotFoundException e) {
-
-			System.out.println("Where is your PostgreSQL JDBC Driver? " + "Include in your library path!");
-			e.printStackTrace();
-			return null;
-
-		}
-
-		Connection connection = null;
-
-		try {
-
-			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/despesasdegastos", "postgres",
-					"admin");
-
-		} catch (SQLException e) {
-
-			System.out.println("Connection Failed! Check output console");
-			e.printStackTrace();
-			return null;
-
-		}
-		return connection;
-	}
-	
 	public static void criarNovoUsuario(String nome, String sobrenome, String nickname, String email, String senha)
 	{
-		Connection mandarUsuario = criarConexao();
+		Connection mandarUsuario = ConexoesFabrica.criarConexao();
 		String query = "INSERT INTO despesasschema.despesasusuarios(nome_usuario, sobrenome_usuario, nickname_usuario, email_usuario, senha) VALUES (?, ?, ?, ?, ?);";	
 		try {
 			PreparedStatement pst = mandarUsuario.prepareStatement(query);
@@ -67,7 +36,7 @@ public class ControleBancoDados {
 	}
 
 	public static Usuario acessarSistema(String email, String senha) {
-		Connection checkUsuarioExiste = criarConexao();
+		Connection checkUsuarioExiste = ConexoesFabrica.criarConexao();
 		String query = "SELECT id_usuario, nome_usuario, sobrenome_usuario, nickname_usuario, email_usuario, senha FROM despesasschema.despesasusuarios WHERE email_usuario=? AND senha=?;";
 		
 		PreparedStatement pst;

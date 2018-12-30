@@ -1,10 +1,6 @@
 package entity;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import com.sun.xml.internal.bind.v2.TODO;
 
 public class DespesaPrazo extends Despesa{
 	private Integer numeroDeParcelas;
